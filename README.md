@@ -21,7 +21,7 @@ I opened the integrated terminal in VS Code and ran "npm install" to install the
 ## Usage
 
 Once the packages are installed, I ran "node server.js" to start the server.
-The site is deployed to Render, so all the user has to do is visit this link:
+The site is deployed to Render, so all the user has to do is visit this link: https://note-taker-6l8q.onrender.com/
 
 
 ## License

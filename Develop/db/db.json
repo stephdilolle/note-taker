@@ -6,5 +6,9 @@
     {
         "title": "test",
         "text": "test"
+    },
+    {
+        "title": "Doctor's appointment",
+        "text": "June 25 at 3pm\n"
     }
 ]
