@@ -1,15 +1,25 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
-  "description": "",
+  "description": "A tool for taking notes",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
+  "author": "Stephanie DiLolle",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
     "uuid": "^10.0.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephdilolle/note-taker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stephdilolle/note-taker/issues"
+  },
+  "homepage": "https://github.com/stephdilolle/note-taker#readme"
 }

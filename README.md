@@ -6,7 +6,7 @@
 - What problem does it solve? -- It allows the user to write notes and save them to an easy-to-manage list.
 - What did you learn? -- I learned about get/post routes and deploying to render.
 
-## Table of Contents (Optional)
+## Table of Contents
 
 If your README is long, add a table of contents to make it easy for users to find what they need.
 
