@@ -1,51 +1,28 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const { v4: uuidv4 } = require('uuid'); // npm package to generate unique IDs
+const notes = require('express').Router();
+const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 
-const app = express();
-const PORT = 3002;
-
-app.use(express.json());
-
-// GET route to read all notes from db.json
-app.get('/api/notes', (req, res) => {
-  fs.readFile(path.join(__dirname, 'db.json'), 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: 'Internal Server Error' });
-    }
-    
-    const notes = JSON.parse(data);
-    res.json(notes);
-  });
+// GET Route for retrieving all the notes
+notes.get('/', (req, res) => {
+  readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
-// POST route to add a new note to db.json
-app.post('/api/notes', (req, res) => {
-  const newNote = req.body;
-  newNote.id = uuidv4(); // Generate a unique ID for the new note
-  
-  fs.readFile(path.join(__dirname, 'db.json'), 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: 'Internal Server Error' });
-    }
+// POST Route for a new note
+notes.post('/', (req, res) => {
+  console.log(req.body);
 
-    const notes = JSON.parse(data);
-    notes.push(newNote);
+  const { title, text } = req.body;
 
-    fs.writeFile(path.join(__dirname, 'db.json'), JSON.stringify(notes, null, 2), (err) => {
-      if (err) {
-        console.error(err);
-        return res.status(500).json({ error: 'Internal Server Error' });
-      }
-      
-      res.json(newNote); // Send the newly added note as a response
-    });
-  });
+  if (req.body) {
+    const newNote = {
+      title,
+      text,
+    };
+
+    readAndAppend(newNote, './db/db.json');
+    res.json(`Note added successfully`);
+  } else {
+    res.error('Error in adding note');
+  }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+module.exports = notes;
